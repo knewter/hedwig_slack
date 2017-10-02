@@ -12,6 +12,7 @@ defmodule HedwigSlack.Connection do
   ### PUBLIC API ###
 
   def start(url) do
+    Logger.warn("hedwig slack url #{inspect url}")
     {:ok, pid} = Supervisor.start_child(ConnectionSupervisor, [url, self()])
     ref = Process.monitor(pid)
     {:ok, pid, ref}
